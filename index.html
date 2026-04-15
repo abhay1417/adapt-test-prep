@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dunes Aviation – ADAPT Prep Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ============================================================
+     TOP NAV
+============================================================ -->
+<header id="main-header">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-brand">
+      <span class="brand-icon">✈</span>
+      <div>
+        <span class="brand-name">Dunes Aviation</span>
+        <span class="brand-sub">ADAPT Prep Hub</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#dashboard" class="nav-link active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="#quiz" class="nav-link" data-section="quiz"><i class="fas fa-brain"></i> Practice Tests</a></li>
+      <li><a href="#study-plan" class="nav-link" data-section="study-plan"><i class="fas fa-calendar-alt"></i> Study Plan</a></li>
+      <li><a href="#interview-prep" class="nav-link" data-section="interview-prep"><i class="fas fa-comments"></i> PI Prep</a></li>
+      <li><a href="#checklist" class="nav-link" data-section="checklist"><i class="fas fa-tasks"></i> Checklist</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ============================================================
+     HERO BANNER
+============================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg-animated"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-plane-departure"></i> India's Premier Aviation Prep Platform
+    </div>
+    <h1 class="hero-title">Ace Your <span class="highlight">Dunes Aviation</span><br/>ADAPT Selection Test</h1>
+    <p class="hero-subtitle">Comprehensive preparation for Dunes Aviation Academy's CPL/Cadet admission — covering ADAPT-style aptitude, Maths, Physics, English, PI prep, and your admission checklist.</p>
+    <div class="hero-stats">
+      <div class="stat"><strong>400+</strong><span>Practice Questions</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>6</strong><span>Test Modules</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>Adaptive</strong><span>Difficulty Engine</span></div>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="goToSection('quiz')"><i class="fas fa-rocket"></i> Start Practice Test</button>
+      <button class="btn-outline" onclick="goToSection('dashboard')"><i class="fas fa-chart-bar"></i> View Progress</button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="cockpit-display">
+      <div class="instrument" id="score-instrument">
+        <div class="instrument-label">Overall Score</div>
+        <div class="instrument-value" id="overall-score-display">—</div>
+        <div class="instrument-unit">%</div>
+      </div>
+      <div class="instrument" id="streak-instrument">
+        <div class="instrument-label">🔥 Streak</div>
+        <div class="instrument-value" id="streak-display">0</div>
+        <div class="instrument-unit">days</div>
+      </div>
+      <div class="instrument" id="level-instrument">
+        <div class="instrument-label">Level</div>
+        <div class="instrument-value" id="level-display">Cadet</div>
+        <div class="instrument-unit"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MAIN APP AREA
+============================================================ -->
+<main id="main-app">
+
+  <!-- ======================== DASHBOARD ======================== -->
+  <section id="dashboard" class="app-section active-section">
+    <div class="section-header">
+      <h2><i class="fas fa-tachometer-alt"></i> Your Dashboard</h2>
+      <p>Track your readiness for the Dunes Aviation ADAPT admission test</p>
+    </div>
+
+    <!-- Progress Overview Cards -->
+    <div class="cards-grid">
+      <div class="card progress-card" id="dash-math">
+        <div class="card-icon math-icon"><i class="fas fa-calculator"></i></div>
+        <div class="card-body">
+          <h3>Mathematics</h3>
+          <p>Algebra, Geometry, Trigonometry, Speed-Distance-Time</p>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="prog-math" style="width:0%"></div>
+          </div>
+          <div class="progress-label"><span id="prog-math-pct">0%</span> Complete</div>
+        </div>
+        <button class="card-action-btn" onclick="startModule('math')">Practice <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="card progress-card" id="dash-physics">
+        <div class="card-icon physics-icon"><i class="fas fa-atom"></i></div>
+        <div class="card-body">
+          <h3>Physics</h3>
+          <p>Newton's Laws, Bernoulli, Optics, Electricity, Mechanics</p>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="prog-physics" style="width:0%"></div>
+          </div>
+          <div class="progress-label"><span id="prog-physics-pct">0%</span> Complete</div>
+        </div>
+        <button class="card-action-btn" onclick="startModule('physics')">Practice <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="card progress-card" id="dash-english">
+        <div class="card-icon english-icon"><i class="fas fa-book-open"></i></div>
+        <div class="card-body">
+          <h3>English Proficiency</h3>
+          <p>Reading, Grammar, Vocabulary, ICAO Level 4</p>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="prog-english" style="width:0%"></div>
+          </div>
+          <div class="progress-label"><span id="prog-english-pct">0%</span> Complete</div>
+        </div>
+        <button class="card-action-btn" onclick="startModule('english')">Practice <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="card progress-card" id="dash-cognitive">
+        <div class="card-icon cognitive-icon"><i class="fas fa-puzzle-piece"></i></div>
+        <div class="card-body">
+          <h3>Cognitive Reasoning</h3>
+          <p>Verbal Reasoning, Numerical Patterns, Spatial, Working Memory</p>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="prog-cognitive" style="width:0%"></div>
+          </div>
+          <div class="progress-label"><span id="prog-cognitive-pct">0%</span> Complete</div>
+        </div>
+        <button class="card-action-btn" onclick="startModule('cognitive')">Practice <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="card progress-card" id="dash-aviation">
+        <div class="card-icon aviation-icon"><i class="fas fa-plane"></i></div>
+        <div class="card-body">
+          <h3>Aviation Knowledge</h3>
+          <p>Air Regulations, Meteorology, Navigation, DGCA norms</p>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="prog-aviation" style="width:0%"></div>
+          </div>
+          <div class="progress-label"><span id="prog-aviation-pct">0%</span> Complete</div>
+        </div>
+        <button class="card-action-btn" onclick="startModule('aviation')">Practice <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="card progress-card" id="dash-personality">
+        <div class="card-icon personality-icon"><i class="fas fa-user-check"></i></div>
+        <div class="card-body">
+          <h3>Personality & PI Prep</h3>
+          <p>Situational Judgement, Motivation, Leadership, GD Tips</p>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="prog-personality" style="width:0%"></div>
+          </div>
+          <div class="progress-label"><span id="prog-personality-pct">0%</span> Complete</div>
+        </div>
+        <button class="card-action-btn" onclick="goToSection('interview-prep')">Prepare <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Readiness Meter -->
+    <div class="readiness-section">
+      <h3><i class="fas fa-gauge-high"></i> Admission Readiness Meter</h3>
+      <div class="readiness-meter">
+        <div class="readiness-fill" id="readiness-fill" style="width:0%"></div>
+        <span class="readiness-label" id="readiness-label">0% — Start practicing to assess your readiness!</span>
+      </div>
+      <div class="readiness-tiers">
+        <span class="tier tier-0">0%<br/>Beginner</span>
+        <span class="tier tier-25">25%<br/>Cadet</span>
+        <span class="tier tier-50">50%<br/>Trainee</span>
+        <span class="tier tier-75">75%<br/>Pilot Ready</span>
+        <span class="tier tier-100">90%+<br/>✈ Select Ready</span>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="activity-section">
+      <h3><i class="fas fa-history"></i> Recent Activity</h3>
+      <div id="activity-feed">
+        <div class="activity-empty"><i class="fas fa-info-circle"></i> No activity yet. Start a practice module above!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== QUIZ SECTION ======================== -->
+  <section id="quiz" class="app-section">
+    <div class="section-header">
+      <h2><i class="fas fa-brain"></i> Adaptive Practice Tests</h2>
+      <p>Questions adapt in difficulty based on your performance — just like the real ADAPT assessment</p>
+    </div>
+
+    <!-- Module Selector -->
+    <div id="module-selector">
+      <div class="module-grid">
+        <div class="module-card" onclick="startModule('math')">
+          <div class="module-icon math-icon"><i class="fas fa-calculator"></i></div>
+          <h3>Mathematics</h3>
+          <p>70 questions across algebra, trigonometry, geometry, speed-distance-time</p>
+          <div class="module-meta"><span class="tag">Class 12 Level</span><span class="tag">DGCA Aligned</span></div>
+          <button class="btn-start">Begin Test <i class="fas fa-play"></i></button>
+        </div>
+        <div class="module-card" onclick="startModule('physics')">
+          <div class="module-icon physics-icon"><i class="fas fa-atom"></i></div>
+          <h3>Physics</h3>
+          <p>65 questions on mechanics, thermodynamics, optics, electricity, Bernoulli</p>
+          <div class="module-meta"><span class="tag">Aviation Context</span><span class="tag">Class 12 Level</span></div>
+          <button class="btn-start">Begin Test <i class="fas fa-play"></i></button>
+        </div>
+        <div class="module-card" onclick="startModule('english')">
+          <div class="module-icon english-icon"><i class="fas fa-book-open"></i></div>
+          <h3>English Proficiency</h3>
+          <p>Grammar, reading comprehension, vocabulary, ICAO Level 4 standards</p>
+          <div class="module-meta"><span class="tag">ICAO Level 4+</span><span class="tag">Reading</span></div>
+          <button class="btn-start">Begin Test <i class="fas fa-play"></i></button>
+        </div>
+        <div class="module-card" onclick="startModule('cognitive')">
+          <div class="module-icon cognitive-icon"><i class="fas fa-puzzle-piece"></i></div>
+          <h3>Cognitive Reasoning</h3>
+          <p>Numerical patterns, verbal reasoning, spatial awareness, working memory</p>
+          <div class="module-meta"><span class="tag">ADAPT Style</span><span class="tag">Psychometric</span></div>
+          <button class="btn-start">Begin Test <i class="fas fa-play"></i></button>
+        </div>
+        <div class="module-card" onclick="startModule('aviation')">
+          <div class="module-icon aviation-icon"><i class="fas fa-plane"></i></div>
+          <h3>Aviation Knowledge</h3>
+          <p>Air regulations, meteorology, navigation, DGCA CPL/PPL syllabus basics</p>
+          <div class="module-meta"><span class="tag">DGCA Syllabus</span><span class="tag">CPL Prep</span></div>
+          <button class="btn-start">Begin Test <i class="fas fa-play"></i></button>
+        </div>
+        <div class="module-card mock-card" onclick="startMockTest()">
+          <div class="module-icon mock-icon"><i class="fas fa-clipboard-list"></i></div>
+          <h3>Full Mock ADAPT Test</h3>
+          <p>Timed 30-question adaptive mock exam across all subjects — simulates real ADAPT format</p>
+          <div class="module-meta"><span class="tag tag-hot">🔥 Recommended</span><span class="tag">Timed</span></div>
+          <button class="btn-start btn-mock">Start Mock <i class="fas fa-stopwatch"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Interface -->
+    <div id="quiz-interface" style="display:none;">
+      <div class="quiz-header">
+        <div class="quiz-info">
+          <span id="quiz-module-name" class="quiz-module-badge"></span>
+          <span id="quiz-difficulty-badge" class="difficulty-badge">Medium</span>
+        </div>
+        <div class="quiz-meta-row">
+          <span><i class="fas fa-question-circle"></i> Question <span id="q-current">1</span> of <span id="q-total">10</span></span>
+          <span id="quiz-timer-wrap"><i class="fas fa-clock"></i> <span id="quiz-timer">--:--</span></span>
+          <span><i class="fas fa-star"></i> Score: <span id="quiz-live-score">0</span></span>
+        </div>
+        <div class="quiz-progress-wrap">
+          <div class="quiz-progress-bar" id="quiz-progress-bar" style="width:10%"></div>
+        </div>
+      </div>
+
+      <div class="question-card" id="question-card">
+        <div class="question-category" id="q-category"></div>
+        <div class="question-text" id="q-text"></div>
+        <div class="options-grid" id="options-grid"></div>
+        <div class="answer-feedback" id="answer-feedback" style="display:none;"></div>
+        <div class="quiz-actions">
+          <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>
+            Next Question <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Results -->
+    <div id="quiz-results" style="display:none;">
+      <div class="results-card">
+        <div class="results-icon" id="results-icon"></div>
+        <h2 id="results-title">Test Complete!</h2>
+        <div class="results-score-display">
+          <div class="big-score" id="results-big-score">0</div>
+          <div class="big-score-label">/ <span id="results-total"></span> correct</div>
+        </div>
+        <div class="results-pct-ring">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#e2e8f0" stroke-width="10"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#3b82f6" stroke-width="10"
+              stroke-dasharray="314" id="results-ring" stroke-dashoffset="314"
+              stroke-linecap="round" transform="rotate(-90 60 60)"/>
+          </svg>
+          <div class="ring-pct" id="ring-pct">0%</div>
+        </div>
+        <div class="results-analysis" id="results-analysis"></div>
+        <div class="results-actions">
+          <button class="btn-primary" onclick="retryQuiz()"><i class="fas fa-redo"></i> Try Again</button>
+          <button class="btn-outline" onclick="showModuleSelector()"><i class="fas fa-list"></i> All Modules</button>
+          <button class="btn-outline" onclick="goToSection('study-plan')"><i class="fas fa-calendar"></i> Study Plan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== STUDY PLAN ======================== -->
+  <section id="study-plan" class="app-section">
+    <div class="section-header">
+      <h2><i class="fas fa-calendar-alt"></i> 30-Day Study Plan</h2>
+      <p>Structured daily preparation schedule aligned with Dunes Aviation CPL admission requirements</p>
+    </div>
+
+    <div class="plan-overview-cards">
+      <div class="plan-stat-card">
+        <i class="fas fa-calendar-check"></i>
+        <strong id="days-completed">0</strong>
+        <span>Days Completed</span>
+      </div>
+      <div class="plan-stat-card">
+        <i class="fas fa-clock"></i>
+        <strong>2-3 hrs</strong>
+        <span>Daily Target</span>
+      </div>
+      <div class="plan-stat-card">
+        <i class="fas fa-graduation-cap"></i>
+        <strong>30</strong>
+        <span>Total Days</span>
+      </div>
+      <div class="plan-stat-card">
+        <i class="fas fa-star"></i>
+        <strong id="plan-streak-display">0</strong>
+        <span>Day Streak</span>
+      </div>
+    </div>
+
+    <div class="week-tabs">
+      <button class="week-tab active" onclick="showWeek(1)">Week 1</button>
+      <button class="week-tab" onclick="showWeek(2)">Week 2</button>
+      <button class="week-tab" onclick="showWeek(3)">Week 3</button>
+      <button class="week-tab" onclick="showWeek(4)">Week 4</button>
+    </div>
+
+    <div id="study-plan-content"></div>
+  </section>
+
+  <!-- ======================== PI / INTERVIEW PREP ======================== -->
+  <section id="interview-prep" class="app-section">
+    <div class="section-header">
+      <h2><i class="fas fa-comments"></i> Personal Interview (PI) Preparation</h2>
+      <p>Prepare for Dunes Aviation's personal interview with common questions, model answers, and tips</p>
+    </div>
+
+    <div class="pi-tabs">
+      <button class="pi-tab active" onclick="showPITab('common-questions')"><i class="fas fa-question-circle"></i> Common Questions</button>
+      <button class="pi-tab" onclick="showPITab('motivation')"><i class="fas fa-heart"></i> Motivation Questions</button>
+      <button class="pi-tab" onclick="showPITab('aviation-gk')"><i class="fas fa-plane"></i> Aviation GK</button>
+      <button class="pi-tab" onclick="showPITab('sjt')"><i class="fas fa-balance-scale"></i> Situational Judgement</button>
+      <button class="pi-tab" onclick="showPITab('tips')"><i class="fas fa-lightbulb"></i> PI Tips</button>
+    </div>
+
+    <div id="pi-content"></div>
+  </section>
+
+  <!-- ======================== CHECKLIST ======================== -->
+  <section id="checklist" class="app-section">
+    <div class="section-header">
+      <h2><i class="fas fa-tasks"></i> Dunes Aviation Admission Checklist</h2>
+      <p>Complete everything below before applying to Dunes Aviation Academy CPL program</p>
+    </div>
+
+    <div id="checklist-content"></div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="main-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-icon">✈</span>
+      <span>Dunes Aviation ADAPT Prep Hub</span>
+    </div>
+    <p class="footer-note">This is an unofficial educational preparation tool. Official admission details at <a href="https://dunesaviation.in" target="_blank" rel="noopener">dunesaviation.in</a> and <a href="https://admissions.dunesaviation.in" target="_blank" rel="noopener">admissions.dunesaviation.in</a></p>
+    <p class="footer-note">ADAPT® is a registered assessment system by Symbiotics Ltd. This site is for practice purposes only.</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/questions.js"></script>
+<script src="js/study-plan.js"></script>
+<script src="js/pi-prep.js"></script>
+<script src="js/checklist.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
