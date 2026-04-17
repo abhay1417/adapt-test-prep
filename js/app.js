@@ -666,3 +666,23 @@ document.addEventListener('DOMContentLoaded', () => {
     goToSection(hash);
   }
 });
+
+// ================= NAVIGATION =================
+function goToSection(section) {
+  document.querySelectorAll('.app-section').forEach(sec => {
+    sec.classList.remove('active-section');
+  });
+  document.getElementById(section).classList.add('active-section');
+}
+
+// ================= MODULE START =================
+function startModule(module) {
+  console.log("Starting module:", module);
+  alert("Starting " + module + " module (basic working)");
+}
+
+// ================= MOCK TEST =================
+function startMockTest() {
+  console.log("Starting mock test");
+  alert("Mock Test Started");
+}
